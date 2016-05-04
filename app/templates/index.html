@@ -50,15 +50,15 @@
           },
         ]
       %}
-        {% if current_user.role == 'buyer' %}
-          {% set buyer_dashboard = [
-              {
-                "link": "/buyers",
-                "title": "View your requirements and supplier responses",
-              },
-            ]
-          %}
-        {% endif %}
+      {% if current_user.role == 'buyer' %}
+        {% set buyer_dashboard = [
+            {
+              "link": "/buyers",
+              "title": "View your requirements and supplier responses",
+            },
+          ]
+        %}
+      {% endif %}
     {% else %}
       {% set dss_items = [
           {
