@@ -20,32 +20,36 @@
 <div class="index-page grid-row">
   <div class="column-two-thirds">
     <h2 class="marketplace-homepage-subheading">Find technology or people for digital projects in the public sector</h2>
+    {% set dos_slug = 'digital-outcomes-and-specialists' %}
+    {% set buyer_dashboard = [] %}
+    {% set dss_items = [] %}
+    {% set dos_items = [] %}
+
     {% if dos_is_live %}
       {% set
         dos_items = [
           {
-            "link": url_for("main.info_page_for_starting_a_brief", framework_slug='digital-outcomes-and-specialists', lot_slug='digital-specialists'),
+            "link": url_for("main.info_page_for_starting_a_brief", framework_slug=dos_slug, lot_slug='digital-specialists'),
             "title": "Find an individual specialist",
             "body": "eg a developer or user researcher",
           },
           {
-            "link": url_for("main.info_page_for_starting_a_brief", framework_slug='digital-outcomes-and-specialists', lot_slug='digital-outcomes'),
+            "link": url_for("main.info_page_for_starting_a_brief", framework_slug=dos_slug, lot_slug='digital-outcomes'),
             "title": "Find a team to provide an outcome",
             "body": "eg a booking system or accessibility audit",
           },
           {
-            "link": url_for("main.info_page_for_starting_a_brief", framework_slug='digital-outcomes-and-specialists', lot_slug='user-research-participants'),
+            "link": url_for("main.info_page_for_starting_a_brief", framework_slug=dos_slug, lot_slug='user-research-participants'),
             "title": "Find user research participants",
             "body": "eg people from a specific user group to test your service",
           },
           {
-            "link": url_for("main.studios_start_page", framework_slug='digital-outcomes-and-specialists'),
+            "link": url_for("main.studios_start_page", framework_slug=dos_slug),
             "title": "Find a user research lab",
             "body": "eg a room to conduct research sessions",
           },
         ]
       %}
-      {% set dss_items = [] %}
         {% if current_user.role == 'buyer' %}
           {% set buyer_dashboard = [
               {
@@ -54,11 +58,8 @@
               },
             ]
           %}
-        {% else %}
-          {% set buyer_dashboard = [] %}
         {% endif %}
     {% else %}
-      {% set dos_items = [] %}
       {% set dss_items = [
           {
             "link": "https://digitalservicesstore.service.gov.uk/",
@@ -68,7 +69,6 @@
           }
         ]
       %}
-      {% set buyer_dashboard = [] %}
     {% endif %}
 
     {% with
