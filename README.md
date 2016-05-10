@@ -24,12 +24,21 @@ For development you can either point the environment variables to use the
 preview environment's `API` and `Search API` boxes, or use local API instances if 
 you have them running:
 
+local development:
 ```
 export DM_DATA_API_URL=http://localhost:5000
 export DM_DATA_API_AUTH_TOKEN=<auth_token_accepted_by_api>
 export DM_SEARCH_API_URL=http://localhost:5001
 export DM_SEARCH_API_AUTH_TOKEN=<auth_token_accepted_by_search_api>
 ```
+Or current deployment:
+```
+export DM_DATA_API_URL=http://dev-dmapi.mr7mamctmh.eu-west-1.elasticbeanstalk.com/
+export DM_DATA_API_AUTH_TOKEN=myToken
+export DM_SEARCH_API_URL=http://dev-search.jdnvvxey2i.eu-west-1.elasticbeanstalk.com/
+export DM_SEARCH_API_AUTH_TOKEN=myToken
+```
+
 
 Where `DM_DATA_API_AUTH_TOKEN` is a token accepted by the Data API 
 instance pointed to by `DM_API_URL`, and `DM_SEARCH_API_AUTH_TOKEN` 
