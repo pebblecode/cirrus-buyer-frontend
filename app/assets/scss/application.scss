@@ -69,6 +69,9 @@ $path: "/static/images/";
 @import "_atoz_navigation.scss";
 @import "_error-pages.scss";
 
+@import "_pascal.scss";
+
+
 .return-to-top {
   display: block;
   @include core-19;

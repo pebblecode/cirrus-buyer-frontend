@@ -3,10 +3,9 @@
 {% block page_title %}Digital Marketplace{% endblock %}
 
 {% block top_header %}
-<header class="marketplace-homepage-heading">
-  {% include "_phase_banner.html" %}
-  <h1>
-    Digital Marketplace
+<header class="marketplace-homepage-heading" style="background-color: #1094B4;">
+  <h1 style="padding-top: 35px;">
+    The God Cloud
   </h1>
 </header>
 {% endblock %}
@@ -19,7 +18,7 @@
 
 <div class="index-page grid-row">
   <div class="column-two-thirds">
-    <h2 class="marketplace-homepage-subheading">Find technology or people for digital projects in the public sector</h2>
+    <h2 class="marketplace-homepage-subheading">Find Technology, People or Services</h2>
     {% if dos_is_live %}
       {% set
         dos_items = [
@@ -62,8 +61,8 @@
       {% set dss_items = [
           {
             "link": "https://digitalservicesstore.service.gov.uk/",
-            "title": "Find specialists to work on digital projects",
-            "body": "eg technical architects and user researchers",
+            "title": "Digital Specialists",
+            "body": "Eg, technical architects and user researchers",
             "subtext": "Procurement framework: <a href='/digital-services/framework'>Digital Services</a>"
           }
         ]
@@ -75,14 +74,14 @@
       items = dos_items + [
         {
           "link": "/g-cloud",
-          "title": "Find cloud technology and support",
-          "body": "eg web hosting or IT health checks",
+          "title": "Cloud Technology & Support",
+          "body": "Eg, web hosting or IT health checks",
           "subtext": "Procurement framework: <a href='/g-cloud/framework'>G&#8209;Cloud</a>" if not dos_is_live else None
         },
         {
           "link": "/crown-hosting",
-          "title": "Buy physical datacentre space for legacy systems",
-          "body": "eg for services that can’t be migrated to the cloud",
+          "title": "Legal Services",
+          "body": "Eg, a solicitor for x,y,z",
           "subtext": "Procurement framework: <a href='/crown-hosting/framework'>Crown Hosting Data Centres</a>" if not dos_is_live else None
         },
       ] + dss_items + buyer_dashboard
@@ -110,13 +109,7 @@
       {% endif %}
         
       {% if dos_is_live %}
-        <div class="padding-bottom-small">
-          <p>
-            <a href="/digital-outcomes-and-specialists/opportunities" class="top-level-link">
-              Digital Outcomes and Specialists opportunities
-            </a>
-          </p>
-        </div>
+
         
         {% if current_user.role != 'supplier' %}
         <div class="padding-bottom-small">
