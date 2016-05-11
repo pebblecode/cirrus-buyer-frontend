@@ -44,11 +44,11 @@ class Config(object):
 
     DEBUG = False
 
-    RESET_PASSWORD_EMAIL_NAME = 'Digital Marketplace Admin'
-    RESET_PASSWORD_EMAIL_FROM = 'enquiries@digitalmarketplace.service.gov.uk'
-    RESET_PASSWORD_EMAIL_SUBJECT = 'Reset your Digital Marketplace password'
+    RESET_PASSWORD_EMAIL_NAME = 'Cirrus Admin'
+    RESET_PASSWORD_EMAIL_FROM = 'enquiries@cirrus.pebblecode.com'
+    RESET_PASSWORD_EMAIL_SUBJECT = 'Reset your Cirrus password'
 
-    CREATE_USER_SUBJECT = 'Create your Digital Marketplace account'
+    CREATE_USER_SUBJECT = 'Create your Cirrus account'
     SECRET_KEY = None
     SHARED_EMAIL_KEY = None
     RESET_PASSWORD_SALT = 'ResetPasswordSalt'
@@ -100,10 +100,11 @@ class Development(Config):
     SESSION_COOKIE_SECURE = False
     DM_SEARCH_PAGE_SIZE = 5
 
-    DM_DATA_API_URL = "http://localhost:5000"
-    DM_DATA_API_AUTH_TOKEN = "myToken"
-    DM_SEARCH_API_URL = "http://localhost:5001"
-    DM_SEARCH_API_AUTH_TOKEN = "myToken"
+    DM_DATA_API_URL = os.getenv('DM_DATA_API_URL', "http://localhost:5000")
+    DM_DATA_API_AUTH_TOKEN = os.getenv('DM_API_AUTH_TOKEN' ,"myToken")
+
+    DM_SEARCH_API_URL = os.getenv('DM_SEARCH_API_URL', "http://localhost:5001")
+    DM_SEARCH_API_AUTH_TOKEN = os.getenv('DM_SEARCH_API_AUTH_TOKEN',"myToken")
 
     DM_MANDRILL_API_KEY = "not_a_real_key"
     SECRET_KEY = "verySecretKey"
