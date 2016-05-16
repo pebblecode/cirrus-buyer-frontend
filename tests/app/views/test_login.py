@@ -415,7 +415,6 @@ class TestResetPassword(BaseApplicationTest):
             send_email.assert_called_once_with(
                 "email@email.com",
                 mock.ANY,
-                "API KEY",
                 "SUBJECT",
                 "EMAIL FROM",
                 "EMAIL NAME",
@@ -428,7 +427,7 @@ class TestResetPassword(BaseApplicationTest):
     ):
         with self.app.app_context():
 
-            send_email.side_effect = MandrillException(Exception('API is down'))
+            send_email.side_effect = Exception(Exception('API is down'))
 
             res = self.client.post(
                 '/reset-password',
@@ -561,7 +560,7 @@ class TestBuyersCreation(BaseApplicationTest):
     @mock.patch('app.main.views.login.send_email')
     def test_should_503_if_email_fails_to_send(self, send_email, data_api_client):
         data_api_client.is_email_address_with_valid_buyer_domain.return_value = True
-        send_email.side_effect = MandrillException("Arrrgh")
+        send_email.side_effect = Exception("Arrrgh")
         res = self.client.post(
             '/buyers/create',
             data={'email_address': 'valid@test.gov.uk'},

@@ -112,7 +112,7 @@ def send_reset_password_email():
                     current_app.config['RESET_PASSWORD_EMAIL_NAME'],
                     ["password-resets"]
                 )
-            except MandrillException as e:
+            except Exception as e:
                 current_app.logger.error(
                     "Password reset email failed to send. "
                     "error {error} email_hash {email_hash}",
@@ -223,7 +223,7 @@ def submit_create_buyer_account():
                     ["user-creation"]
                 )
                 session['email_sent_to'] = email_address
-            except MandrillException as e:
+            except Exception as e:
                 current_app.logger.error(
                     "buyercreate.fail: Create user email failed to send. "
                     "error {error} email_hash {email_hash}",
