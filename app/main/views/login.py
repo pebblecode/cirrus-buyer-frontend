@@ -6,12 +6,13 @@ from flask_login import current_user
 from flask import abort, current_app, flash, redirect, render_template, request, session, url_for, get_flashed_messages
 from flask_login import logout_user, login_user
 
+from cirrus.email import send_email
+
 from dmapiclient import HTTPError
 from dmapiclient.audit import AuditTypes
 from dmutils.user import User
 from dmutils.email import (
-    decode_invitation_token, decode_password_reset_token, generate_token, send_email,
-    MandrillException
+    decode_invitation_token, decode_password_reset_token, generate_token
 )
 from .. import main
 from ..forms.auth_forms import LoginForm, EmailAddressForm, ChangePasswordForm, CreateUserForm
@@ -106,7 +107,6 @@ def send_reset_password_email():
                 send_email(
                     user.email_address,
                     email_body,
-                    current_app.config['DM_MANDRILL_API_KEY'],
                     current_app.config['RESET_PASSWORD_EMAIL_SUBJECT'],
                     current_app.config['RESET_PASSWORD_EMAIL_FROM'],
                     current_app.config['RESET_PASSWORD_EMAIL_NAME'],
@@ -217,7 +217,6 @@ def submit_create_buyer_account():
                 send_email(
                     email_address,
                     email_body,
-                    current_app.config['DM_MANDRILL_API_KEY'],
                     current_app.config['CREATE_USER_SUBJECT'],
                     current_app.config['RESET_PASSWORD_EMAIL_FROM'],
                     current_app.config['RESET_PASSWORD_EMAIL_NAME'],
