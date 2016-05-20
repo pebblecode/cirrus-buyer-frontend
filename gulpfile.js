@@ -17,7 +17,7 @@ var dmToolkitRoot = bowerRoot + '/digitalmarketplace-frontend-toolkit/toolkit';
 var sspContentRoot = bowerRoot + '/digitalmarketplace-frameworks';
 var assetsFolder = repoRoot + 'app/assets';
 var staticFolder = repoRoot + 'app/static';
-var govukTemplateFolder = repoRoot + 'bower_components/govuk_template';
+var govukTemplateFolder = repoRoot + 'node_modules/cirrus-base-template';
 var govukTemplateAssetsFolder = govukTemplateFolder + '/assets';
 var govukTemplateLayoutsFolder = govukTemplateFolder + '/views/layouts';
 
@@ -233,7 +233,7 @@ gulp.task(
   copyFactory(
     "GOV.UK template into app folder",
     govukTemplateLayoutsFolder,
-    'app/templates/govuk'
+    'app/templates/cirrus-base'
   )
 );
 
