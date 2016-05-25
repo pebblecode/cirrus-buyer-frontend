@@ -122,7 +122,7 @@ class Staging(Live):
 
 configs = {
     'development': Development,
-    'preview': Preview,
+    'preview': Development,
     'staging': Staging,
     'production': Live,
     'test': Test,
