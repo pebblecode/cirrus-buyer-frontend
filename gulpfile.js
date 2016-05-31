@@ -306,6 +306,7 @@ gulp.task('copy_local_repo_and_compile', [
   'copy:local_base_template_repo',
   ], function() {
     var arr = [
+      'copy:govuk_template',
       'copy:template_assets:sass',
       'copy:template_assets:images',
       'copy:template_assets:stylesheets',
