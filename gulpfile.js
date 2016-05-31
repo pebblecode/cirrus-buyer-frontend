@@ -6,6 +6,7 @@ var filelog = require('gulp-filelog');
 var include = require('gulp-include');
 var jasmine = require('gulp-jasmine-phantom');
 var sourcemaps = require('gulp-sourcemaps');
+var path = require('path');
 
 // Paths
 var environment;
@@ -28,6 +29,7 @@ var jsDistributionFile = 'application.js';
 
 // CSS paths
 var cssSourceGlob = assetsFolder + '/scss/application*.scss';
+var cirrusBaseSourceGlob = assetsFolder + '/cirrus-base/govuk-template*.scss';
 var cssDistributionFolder = staticFolder + '/stylesheets';
 
 // Configuration
@@ -114,6 +116,21 @@ gulp.task('sass', function () {
   return stream;
 });
 
+gulp.task('cirrus-base', function () {
+  var stream = gulp.src(cirrusBaseSourceGlob)
+    .pipe(filelog('Compressing Cirrus SCSS files'))
+    .pipe(
+      sass(sassOptions[environment]))
+        .on('error', logErrorAndExit)
+    .pipe(gulp.dest(cssDistributionFolder));
+
+  stream.on('end', function () {
+    console.log('💾  Compressed Cirrus CSS saved as .css files in ' + cssDistributionFolder);
+  });
+
+  return stream;
+});
+
 gulp.task('js', function () {
   var stream = gulp.src(jsSourceFile)
     .pipe(filelog('Compressing JavaScript files'))
@@ -148,9 +165,27 @@ function copyFactory(resourceName, sourceFolder, targetFolder) {
 }
 
 gulp.task(
+  'copy:local_base_template_repo',
+  copyFactory(
+    "Copying local changes to cirrus-base-template",
+    path.resolve(__dirname, '../cirrus-base-template/'),
+    baseTemplateFolder
+  )
+);
+
+gulp.task(
+  'copy:template_assets:sass',
+  copyFactory(
+    "GOV.UK template Sass",
+    baseTemplateAssetsFolder + '/stylesheets',
+    assetsFolder + '/cirrus-base'
+  )
+);
+
+gulp.task(
   'copy:template_assets:stylesheets',
   copyFactory(
-    "GOV.UK template stylesheets",
+    "GOV.UK template CSS",
     baseTemplateAssetsFolder + '/stylesheets',
     staticFolder + '/stylesheets'
   )
@@ -264,15 +299,40 @@ gulp.task('test', function () {
     }));
 });
 
+
+// This is a hacky way to get the designers able to see edits to the
+// local base-template repo quickly
+gulp.task('copy_local_repo_and_compile', [
+  'copy:local_base_template_repo',
+  ], function() {
+    var arr = [
+      'copy:template_assets:sass',
+      'copy:template_assets:images',
+      'copy:template_assets:stylesheets',
+      'copy:template_assets:javascripts',
+      'cirrus-base'
+    ];
+    for (i in arr) {
+      gulp.start(arr[i])
+    }
+  }
+)
+
 gulp.task('watch', ['build:development'], function () {
   var jsWatcher = gulp.watch([ assetsFolder + '/**/*.js' ], ['js']);
-  var cssWatcher = gulp.watch([ assetsFolder + '/**/*.scss' ], ['sass']);
+  var cssWatcher = gulp.watch([ assetsFolder + '/**/*.scss' ], ['sass', 'cirrus-base']);
+
+  var localBaseTempalteRepoWatcher = gulp.watch([ path.resolve(__dirname, '../cirrus-base-template/**/*') ], [
+    'copy_local_repo_and_compile'
+    ]);
+
   var notice = function (event) {
     console.log('File ' + event.path + ' was ' + event.type + ' running tasks...');
   };
 
   cssWatcher.on('change', notice);
   jsWatcher.on('change', notice);
+  localBaseTempalteRepoWatcher.on('change', notice);
 });
 
 gulp.task('set_environment_to_development', function (cb) {
@@ -289,6 +349,7 @@ gulp.task(
   'copy',
   [
     'copy:ssp_content',
+    'copy:template_assets:sass',
     'copy:template_assets:images',
     'copy:template_assets:stylesheets',
     'copy:template_assets:javascripts',
@@ -310,6 +371,7 @@ gulp.task(
   function() {
     gulp.start('sass');
     gulp.start('js');
+    gulp.start('cirrus-base');
   }
 );
 

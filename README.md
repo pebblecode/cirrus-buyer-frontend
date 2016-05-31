@@ -54,6 +54,43 @@ Install new Python dependencies with pip
 npm install
 ```
 
+### DESIGNERS
+
+First, make sure you've cloned cirrus-base-template in the same directory as this repo. So that's one level up from where this README is.
+For instance, if you have a single directory called Code for all your projects, you should have both this repo and cirrus-base-template in it:
+```
+$ ls $HOME/Code/
+  cirrus-base-template/
+  cirrus-buyer-frontend/
+  ...
+```
+We will be making site-wide style changes to the cirrus-base-template, so we need the buyer-frontend to 'watch' any changes to the other repo.
+
+You will also need to make sure you're running the API. Please see the README for the cirrus-marketplace-api.
+
+But first you can start the server in the way outlined above, ie. easy_install virtualenv, exporting env vars and creating the virtual env like so:
+```
+export DM_API_AUTH_TOKENS=myToken
+export DM_DATA_API_AUTH_TOKEN=myToken
+export DM_ELASTICSEARCH_URL=http://localhost:9200
+export DM_SEARCH_API_AUTH_TOKENS=myToken
+export DM_ENVIRONMENT=development
+export DM_LOG_PATH=$HOME/cirruslogs
+cd cirrus-buyer-frontend; 
+virtualenv ./venv; 
+source ./venv/bin/activate; 
+pip install -r requirements.txt; 
+yes | npm install; 
+```
+
+Then, in a new terminal, start this here to watch the local files of the other repo and be able to edit them easily there:
+```
+npm run frontend-build:watch
+```
+This will then watch any changes to cirrus-base-template and update the view accordingly. You will have to refresh the page though, sorry!
+
+It looks for it in the folder above this one, so hence why the two repos must be in the same place.
+
 ### Run the tests
 
 To run the whole testsuite:

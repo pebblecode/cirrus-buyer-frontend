@@ -14,38 +14,39 @@ from app import data_api_client, content_loader
 
 @main.route('/')
 def index():
-    temporary_message = {}
+    return render_template('index-g-cloud.html')
+    # temporary_message = {}
 
-    try:
-        frameworks = data_api_client.find_frameworks().get('frameworks')
-        framework = get_one_framework_by_status_in_order_of_preference(
-            frameworks,
-            ['open', 'coming', 'pending']
-        )
+    # try:
+    #     frameworks = data_api_client.find_frameworks().get('frameworks')
+    #     framework = get_one_framework_by_status_in_order_of_preference(
+    #         frameworks,
+    #         ['open', 'coming', 'pending']
+    #     )
 
-        if framework is not None:
-            content_loader.load_messages(framework.get('slug'), ['homepage-sidebar'])
-            temporary_message = content_loader.get_message(
-                framework.get('slug'),
-                'homepage-sidebar',
-                framework.get('status')
-            )
+    #     if framework is not None:
+    #         content_loader.load_messages(framework.get('slug'), ['homepage-sidebar'])
+    #         temporary_message = content_loader.get_message(
+    #             framework.get('slug'),
+    #             'homepage-sidebar',
+    #             framework.get('status')
+    #         )
 
-    # if there is a problem with the API we should still show the home page
-    except APIError:
-        frameworks = []
-    # if no message file is found (should never happen), throw a 500
-    except ContentNotFoundError:
-        current_app.logger.error(
-            "contentloader.fail No message file found for framework. "
-            "framework {} status {}".format(framework.get('slug'), framework.get('status')))
-        abort(500)
+    # # if there is a problem with the API we should still show the home page
+    # except APIError:
+    #     frameworks = []
+    # # if no message file is found (should never happen), throw a 500
+    # except ContentNotFoundError:
+    #     current_app.logger.error(
+    #         "contentloader.fail No message file found for framework. "
+    #         "framework {} status {}".format(framework.get('slug'), framework.get('status')))
+    #     abort(500)
 
-    return render_template(
-        'index.html',
-        frameworks={framework['slug']: framework for framework in frameworks},
-        temporary_message=temporary_message
-    )
+    # return render_template(
+    #     'index.html',
+    #     frameworks={framework['slug']: framework for framework in frameworks},
+    #     temporary_message=temporary_message
+    # )
 
 
 @main.route('/cookies')
