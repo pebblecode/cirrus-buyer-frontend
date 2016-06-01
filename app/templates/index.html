@@ -4,7 +4,7 @@
 
 {% block top_header %}
 <header class="marketplace-homepage-heading" style="background-color: #1094B4;">
-  <h1 style="padding-top: 35px;">
+  <h1 style="padding-top: 35px; color: white;">
     The God Cloud
   </h1>
 </header>
@@ -61,8 +61,8 @@
       {% set dss_items = [
           {
             "link": "https://digitalservicesstore.service.gov.uk/",
-            "title": "Digital Specialists",
-            "body": "Eg, technical architects and user researchers",
+            "title": "Facilities Supplies",
+            "body": "eg, cleaning, site management",
             "subtext": "Procurement framework: <a href='/digital-services/framework'>Digital Services</a>"
           }
         ]
@@ -74,14 +74,14 @@
       items = dos_items + [
         {
           "link": "/g-cloud",
-          "title": "Cloud Technology & Support",
-          "body": "Eg, web hosting or IT health checks",
+          "title": "Academy Services",
+          "body": "eg, software, accounting, legal",
           "subtext": "Procurement framework: <a href='/g-cloud/framework'>G&#8209;Cloud</a>" if not dos_is_live else None
         },
         {
           "link": "/crown-hosting",
-          "title": "Legal Services",
-          "body": "Eg, a solicitor for x,y,z",
+          "title": "Computing & ICT",
+          "body": "eg, audio visual, cabling",
           "subtext": "Procurement framework: <a href='/crown-hosting/framework'>Crown Hosting Data Centres</a>" if not dos_is_live else None
         },
       ] + dss_items + buyer_dashboard

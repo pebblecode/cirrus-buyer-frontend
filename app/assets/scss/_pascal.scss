@@ -1,8 +1,64 @@
-#header-logo {
-	display: none !important;
+.browse-list-item-link:visited, a.browse-list-item-link:visited {
+	color: #1094B4;
 }
 
-body {
-	color: green;
+.browse-list-item-link, a.browse-list-item-link {
+	color: #1094B4;
 }
 
+.browse-list-item-link:hover, a.browse-list-item-link:hover {
+	color: #45C9DF;
+}
+h1 {
+	color: #1094B4;
+}
+
+.phase-banner {
+	display: none;
+}
+
+.button-save {
+	background-color: #1094B4;
+
+	&:hover {
+		background-color: #45C9DF;
+	}
+}
+
+@media (min-width: 641px) {
+.index-page .search-box button {
+	top: -55px;
+}
+}
+
+h2 {
+	color: #1094B4;
+}
+
+.search-result-title a {
+	color: #1094B4;
+
+	&:visited {
+		color: #1094B4; 
+	}
+
+	&:hover {
+		color: #45C9DF;
+	}
+}
+
+.lot-filters a {
+	color: #1094B4;
+
+	&:visited {
+		color: #1094B4; 
+	}
+
+	&:hover {
+		color: #45C9DF;
+	}
+}
+
+.lot-filters h2 {
+	color: black;
+}

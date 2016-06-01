@@ -1,8 +1,8 @@
 <div class="lot-filters">
-  <h2>Choose a category</h2>
+  <!-- <h2>Choose a category</h2>
   {% from 'macros/_filters.html' import checkbox, lot_filters %}
   <ul>
-
+​
   <li>
         {% if current_lot %}
         <a href="{{ url_for('.search', q=search_keywords) }}">All categories</a>
@@ -19,12 +19,37 @@
       </li>
     {% endif %}
   {% endfor %}
-  </ul>
+  </ul> -->
+​
+  <div class="lot-filters">
+    <h2>Choose a category</h2>
+    <ul>
+      <li>
+            <a href="/g-cloud/search?q=">All categories</a>
+      </li>
+​
+      <li>
+        <a href="/g-cloud/search?q=&amp;lot=saas">IT Services & Solutions</a>
+      </li>
+​
+      <li>
+        <a href="/g-cloud/search?q=&amp;lot=paas">Accounting</a>
+      </li>
+​
+      <li>
+        <a href="/g-cloud/search?q=&amp;lot=iaas">HR</a>
+      </li>
+​
+      <li>
+        <a href="/g-cloud/search?q=&amp;lot=scs">Education</a>
+      </li>
+    </ul>
+  </div>
 </div>
 <div class="govuk-option-select filter-field-text">
   <div class="container-head">
     <label class="option-select-label" for="keywords">
-      Keywords
+      Search
     </label>
   </div>
   <input type="text" name="q" id="keywords" value="{{ search_keywords }}" maxlength="200">
