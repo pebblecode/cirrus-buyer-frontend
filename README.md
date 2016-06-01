@@ -83,6 +83,21 @@ pip install -r requirements.txt;
 yes | npm install; 
 ```
 
+Fishmongers should use this. It requires [https://github.com/adambrenecki/virtualfish](https://github.com/adambrenecki/virtualfish):
+```
+set -x DM_API_AUTH_TOKENS myToken
+set -x DM_DATA_API_AUTH_TOKEN myToken
+set -x DM_ELASTICSEARCH_URL http://localhost:9200
+set -x DM_SEARCH_API_AUTH_TOKENS myToken
+set -x DM_ENVIRONMENT development
+set -x DM_LOG_PATH $HOME/cirruslogs
+cd cirrus-buyer-frontend; 
+vf new buyervenv; 
+vf activate buyervenv;
+pip install -r requirements.txt; 
+yes | npm install;
+```
+
 Then, in a new terminal, start this here to watch the local files of the other repo and be able to edit them easily there:
 ```
 npm run frontend-build:watch
