@@ -26,37 +26,11 @@ from ...exceptions import AuthException
 from app import search_api_client, data_api_client, content_loader
 
 
-@main.route('/g-cloud')
+@main.route('/cirrus')
 def index_g_cloud():
     return render_template('index-g-cloud.html')
 
-
-@main.route('/g-cloud/framework')
-def framework_g_cloud():
-    return redirect('https://www.gov.uk/guidance/the-g-cloud-framework-on-the-digital-marketplace', 301)
-
-
-@main.route('/buyers-guide')
-def buyers_guide():
-    return redirect('https://www.gov.uk/guidance/g-cloud-buyers-guide', 301)
-
-
-@main.route('/suppliers-guide')
-def suppliers_guide():
-    return redirect('/g-cloud/suppliers-guide', 301)
-
-
-@main.route('/g-cloud/buyers-guide')
-def buyers_guide_g_cloud():
-    return redirect('https://www.gov.uk/guidance/g-cloud-buyers-guide', 301)
-
-
-@main.route('/g-cloud/suppliers-guide')
-def suppliers_guide_g_cloud():
-    return redirect('https://www.gov.uk/guidance/g-cloud-suppliers-guide', 301)
-
-
-@main.route('/g-cloud/services/<service_id>')
+@main.route('/cirrus/services/<service_id>')
 def get_service_by_id(service_id):
     try:
         service = data_api_client.get_service(service_id)
@@ -112,9 +86,9 @@ def get_service_by_id(service_id):
         abort(e.status_code)
 
 
-@main.route('/g-cloud/search')
+@main.route('/cirrus/search')
 def search():
-    content_builder = content_loader.get_builder('g-cloud-6', 'search_filters')
+    content_builder = content_loader.get_builder('cirrus-1', 'search_filters')
     filters = filters_for_lot(
         get_lot_from_request(request),
         content_builder
