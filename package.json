@@ -1,6 +1,6 @@
 {
   "name": "digital-marketplace-frontend",
-  "description": "Front end application for the Digital Marketplace",
+  "description": "Front end application for the Cirrus",
   "version": "0.0.1",
   "private": true,
   "engine": "node >= 4.2",

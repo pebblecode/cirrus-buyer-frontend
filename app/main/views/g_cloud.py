@@ -88,7 +88,7 @@ def get_service_by_id(service_id):
 
 @main.route('/cirrus/search')
 def search():
-    content_builder = content_loader.get_builder('cirrus-1', 'search_filters')
+    content_builder = content_loader.get_builder('cirrus', 'search_filters')
     filters = filters_for_lot(
         get_lot_from_request(request),
         content_builder
