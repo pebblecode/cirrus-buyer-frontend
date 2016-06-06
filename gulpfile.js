@@ -371,6 +371,7 @@ gulp.task(
   function() {
     gulp.start('sass');
     gulp.start('js');
+    gulp.start('cirrus-base');
   }
 );
 
