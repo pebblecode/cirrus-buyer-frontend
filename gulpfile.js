@@ -7,6 +7,7 @@ var include = require('gulp-include');
 var jasmine = require('gulp-jasmine-phantom');
 var sourcemaps = require('gulp-sourcemaps');
 var path = require('path');
+var runSequence = require('run-sequence');
 
 // Paths
 var environment;
@@ -76,7 +77,7 @@ var logErrorAndExit = function logErrorAndExit(err) {
 
   // coloured text: https://coderwall.com/p/yphywg/printing-colorful-text-in-terminal-when-run-node-js-script
   console.log('\x1b[41m\x1b[37m  Error: ' + err.message + '\x1b[0m');
-  process.exit(1);
+  this.emit('end');
 
 };
 
@@ -163,7 +164,6 @@ function copyFactory(resourceName, sourceFolder, targetFolder) {
   };
 
 }
-
 gulp.task(
   'copy:local_base_template_repo',
   copyFactory(
@@ -171,6 +171,25 @@ gulp.task(
     path.resolve(__dirname, '../cirrus-base-template/'),
     baseTemplateFolder
   )
+)
+
+gulp.task(
+  'copy:all_local',
+  function(cb){
+    runSequence(
+      'copy:local_base_template_repo', 
+      'copy:govuk_template',
+      'copy:template_assets:sass',
+      'copy:template_assets:images',
+      'copy:template_assets:stylesheets',
+      'copy:template_assets:javascripts',
+      'cirrus-base',
+      function shouldBeDone() {
+        console.log('**** Local Base template copying and compiling complete. ****')
+        cb();
+      }
+    )
+  }
 );
 
 gulp.task(
@@ -299,32 +318,12 @@ gulp.task('test', function () {
     }));
 });
 
-
-// This is a hacky way to get the designers able to see edits to the
-// local base-template repo quickly
-gulp.task('copy_local_repo_and_compile', [
-  'copy:local_base_template_repo',
-  ], function() {
-    var arr = [
-      'copy:govuk_template',
-      'copy:template_assets:sass',
-      'copy:template_assets:images',
-      'copy:template_assets:stylesheets',
-      'copy:template_assets:javascripts',
-      'cirrus-base'
-    ];
-    for (i in arr) {
-      gulp.start(arr[i])
-    }
-  }
-)
-
 gulp.task('watch', ['build:development'], function () {
   var jsWatcher = gulp.watch([ assetsFolder + '/**/*.js' ], ['js']);
-  var cssWatcher = gulp.watch([ assetsFolder + '/**/*.scss' ], ['sass', 'cirrus-base']);
+  var cssWatcher = gulp.watch([ assetsFolder + '/**/*.scss' ], ['sass']);
 
   var localBaseTempalteRepoWatcher = gulp.watch([ path.resolve(__dirname, '../cirrus-base-template/**/*') ], [
-    'copy_local_repo_and_compile'
+    'copy:all_local'
     ]);
 
   var notice = function (event) {
@@ -372,7 +371,6 @@ gulp.task(
   function() {
     gulp.start('sass');
     gulp.start('js');
-    gulp.start('cirrus-base');
   }
 );
 
