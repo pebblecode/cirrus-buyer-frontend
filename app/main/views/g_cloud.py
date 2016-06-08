@@ -26,11 +26,11 @@ from ...exceptions import AuthException
 from app import search_api_client, data_api_client, content_loader
 
 
-@main.route('/cirrus')
+@main.route('/inoket')
 def index_g_cloud():
     return render_template('index-g-cloud.html')
 
-@main.route('/cirrus/services/<service_id>')
+@main.route('/inoket/services/<service_id>')
 def get_service_by_id(service_id):
     try:
         service = data_api_client.get_service(service_id)
@@ -86,9 +86,9 @@ def get_service_by_id(service_id):
         abort(e.status_code)
 
 
-@main.route('/cirrus/search')
+@main.route('/inoket/search')
 def search():
-    content_builder = content_loader.get_builder('cirrus', 'search_filters')
+    content_builder = content_loader.get_builder('inoket-1', 'search_filters')
     filters = filters_for_lot(
         get_lot_from_request(request),
         content_builder

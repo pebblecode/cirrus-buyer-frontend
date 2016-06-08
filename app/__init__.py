@@ -16,8 +16,8 @@ feature_flags = flask_featureflags.FeatureFlag()
 csrf = CsrfProtect()
 
 content_loader = ContentLoader('app/content')
-content_loader.load_manifest('cirrus', 'services', 'search_filters')
-content_loader.load_manifest('cirrus', 'services', 'display_service')
+content_loader.load_manifest('inoket-1', 'services', 'search_filters')
+content_loader.load_manifest('inoket-1', 'services', 'display_service')
 
 
 def create_app(config_name):

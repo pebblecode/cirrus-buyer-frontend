@@ -29,7 +29,7 @@ def is_alpha(character):
     return re.search(reg, character)
 
 
-@main.route('/cirrus/suppliers')
+@main.route('/inoket/suppliers')
 def suppliers_list_by_prefix():
     api_prefix = process_prefix(
         prefix=request.args.get('prefix', default=u"A"),
@@ -59,7 +59,7 @@ def suppliers_list_by_prefix():
             raise e
 
 
-@main.route('/cirrus/supplier/<supplier_id>')
+@main.route('/inoket/supplier/<supplier_id>')
 def suppliers_details(supplier_id):
     supplier = data_api_client.get_supplier(
         supplier_id=supplier_id)["suppliers"]

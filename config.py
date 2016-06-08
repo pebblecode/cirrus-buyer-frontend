@@ -43,11 +43,11 @@ class Config(object):
 
     DEBUG = False
 
-    RESET_PASSWORD_EMAIL_NAME = 'Cirrus Admin'
-    RESET_PASSWORD_EMAIL_FROM = 'enquiries@cirrus.pebblecode.com'
+    RESET_PASSWORD_EMAIL_NAME = 'Inoket Admin'
+    RESET_PASSWORD_EMAIL_FROM = 'enquiries@inoket.com'
     RESET_PASSWORD_EMAIL_SUBJECT = 'Reset your Cirrus password'
 
-    CREATE_USER_SUBJECT = 'Create your Cirrus account'
+    CREATE_USER_SUBJECT = 'Create your Inoket account'
     SECRET_KEY = None
     SHARED_EMAIL_KEY = None
     RESET_PASSWORD_SALT = 'ResetPasswordSalt'
