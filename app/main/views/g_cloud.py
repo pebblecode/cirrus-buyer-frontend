@@ -42,7 +42,7 @@ def get_service_by_id(service_id):
         service_data = service['services']
         service_view_data = Service(
             service_data,
-            content_loader.get_builder('g-cloud-6', 'display_service').filter(
+            content_loader.get_builder('inoket-1', 'display_service').filter(
                 service_data
             )
         )
