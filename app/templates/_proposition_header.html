@@ -2,14 +2,20 @@
   <div class="content">
     <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
     <nav id="proposition-menu">
-      <a href="/" id="proposition-name">Digital Marketplace</a>
-      <ul id="proposition-links">
+
+      <ul id="login-links" class="login">
         {% if current_user.email_address %}
         <li><a class="home" href="{{ url_for('main.logout') }}">Log out</a></li>
         {% else %}
         <li><a class="home" href="{{ url_for('main.render_login') }}">Log in</a></li>
         {% endif %}
         <li><a href="/suppliers/create">Create supplier account</a></li>
+      </ul>
+
+      <ul id="proposition-links" class="navigation">
+      <li><a class="home" href="/">Catalogue</a></li>
+        <li><a class="buyers guide" href="/">Buyers Guide</a></li>
+        <li><a class="suppliers guide" href="/">Suppliers Guide</a></li>
       </ul>
     </nav>
   </div>
