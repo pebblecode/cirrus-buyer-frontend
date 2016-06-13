@@ -1,6 +1,6 @@
 {% extends "_base_page.html" %}
 
-{% block page_title %}G-Cloud - Digital Marketplace{% endblock %}
+{% block page_title %}Inoket{% endblock %}
 
 
 
@@ -24,6 +24,12 @@
     <div class="column-two-thirds">
       {% with
         items = [
+                    {
+            "link": url_for('.search', lot='clcs'),
+            "title": "Contingent Labour and Consultancy Services",
+            "body": "Contractors and Consultancy Services",
+            "subtext": "eg Supply teachers, IT consultants"
+          },
           {
             "link": url_for('.search', lot='saas'),
             "title": "Software as a Service",
@@ -31,17 +37,18 @@
             "subtext": "eg accounting tools or email"
           },
           {
+            "link": url_for('.search', lot='saas'),
+            "title": "Platform as a Service",
+            "body": "Find platforms that provide a basis for building other services and applications",
+            "subtext": "eg "
+          },
+          {
             "link": url_for('.search', lot='iaas'),
             "title": "Infrastructure as a Service",
             "body": "Find networks, hosting facilities and servers on which platforms and software depend",
             "subtext": "eg hosting or content delivery network"
-          },
-          {
-            "link": url_for('.search', lot='clcs'),
-            "title": "Contingent Labour and Consultancy Services",
-            "body": "Contractors and Consultancy Services",
-            "subtext": "eg IT consultants"
           }
+
         ]
       %}
         {% include "toolkit/browse-list.html" %}
