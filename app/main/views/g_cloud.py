@@ -94,6 +94,7 @@ def search():
         content_builder
     )
 
+
     response = search_api_client.search_services(
         **build_search_query(request, filters, content_builder)
     )
@@ -115,6 +116,7 @@ def search():
     set_filter_states(filters, request)
     current_lot = get_lot_from_request(request)
 
+    # import ipdb; ipdb.set_trace();
     return render_template(
         'search.html',
         current_lot=current_lot,
