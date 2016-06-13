@@ -96,7 +96,7 @@ def search():
 
 
     response = search_api_client.search_services(
-        **build_search_query(request, filters, content_builder)
+        index='inoket-1', **build_search_query(request, filters, content_builder)
     )
 
     search_results_obj = SearchResults(response)
