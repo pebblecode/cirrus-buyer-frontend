@@ -2,6 +2,7 @@
 @import "_colours.scss";
 @import "_grid_layout.scss";
 @import "_measurements.scss";
+@import "styleguide/colours";
 
 #footer {
 
@@ -53,6 +54,7 @@
       li {
         display: block;
         margin-bottom: 5px;
+        color: $footer-link;
 
         padding: 10px 0 0;
         margin: 0 $gutter-half 5px 0;

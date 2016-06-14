@@ -32,7 +32,10 @@
     @include core-19;
   }
 
-  .search-box {
+
+
+  }
+    .search-box {
     @include media(tablet) {
       margin-bottom: $gutter-half;
     }
@@ -51,19 +54,18 @@
     button {
       height: 48px;
       width: 100%;
+      border-radius: 3px;
 
       @include media(tablet) {
-        width: 7.6em;
+        width: 8.6em;
         position: absolute;
         top: 0px;
-        right: -7.6em;
+        right: -9.6em;
         margin-right: $gutter-half;
       }
       padding-top: 5px;
       padding-bottom: 5px;
     }
-
-  }
 
   .supplier-messages {
     h2 {
