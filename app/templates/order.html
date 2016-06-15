@@ -1,0 +1,124 @@
+{% extends "_base_page.html" %}
+{% block page_title %} Place an Order {% endblock %}
+{% block breadcrumb%}
+  {%
+    with
+    items = [
+      {
+        "link": url_for('.index'),
+        "label": "Catalogue"
+      },
+      {
+        "link": url_for('.get_service_by_id', service_id=service_id),
+        "label": service_title
+      },
+      {
+        "label": "Order"
+      }
+    ]
+  %}
+    {% include "toolkit/breadcrumb.html" %}
+  {% endwith %}
+{% endblock %}
+{% block main_content %}
+<div class="grid-row">
+  <header class="page-heading-smaller">
+    <h1>Place an Order</h1>
+  </header>
+</div>
+<div class="grid-row service-detail">
+  <div class="column-one-whole">
+    <hr/>
+    <h2>{{ service_title }}</h2>
+    <p>{{ supplierName }}</p>
+    <p>ServiceID: {{ service_id }}
+  </div>
+</div>
+<div class="grid-row order-form">
+  <div class="column-one-whole">
+    <hr />
+    <h3>Enter the following details to complete your order</h3>
+    <form autocomplete="off" action="{{ url_for('.order', service_title=service_title, service_id=service_id, supplierName=supplierName) }}" method="POST">
+
+      {{ form.hidden_tag() }}
+
+      {% if form.email_address.errors %}
+        <div class="validation-wrapper">
+        {% endif %}
+        <div class="question" id="{{ form.email_address.name }}">
+          {{ form.email_address.label(class="question-heading-with-hint") }}
+          <p class="hint">
+            We will use this email address to track your order, please enter the organisation specific email address of the person responsible for this order. e.g. If you worked for Inoket it might be - james@inoket.com
+          </p>
+          {% if form.email_address.errors %}
+            <p class="validation-message" id="error-email-address-textbox">
+              {% for error in form.email_address.errors %}{{ error }}{% endfor %}
+            </p>
+          {% endif %}
+          {{ form.email_address(class="text-box", autocomplete="off") }}
+        </div>
+        {% if form.email_address.errors %}
+          </div>
+        {% endif %}
+
+        {% if form.po_number.errors %}
+          <div class="validation-wrapper">
+          {% endif %}
+          <div class="question" id="{{ form.po_number.name }}">
+            {{ form.po_number.label(class="question-heading-with-hint") }}
+            <p class="hint">Enter the purchase order number that you have generated for this order.</p>
+            {% if form.po_number.errors %}
+              <p class="validation-message" id="error-po_number-textbox">
+                {% for error in form.po_number.errors %}{{ error }}{% endfor %}
+              </p>
+            {% endif %}
+            {{ form.po_number(class="text-box", autocomplete="off") }}
+          </div>
+          {% if form.po_number.errors %}
+            </div>
+          {% endif %}
+          {% if form.amount.errors %}
+            <div class="validation-wrapper">
+            {% endif %}
+            <div class="question" id="{{ form.amount.name }}">
+              {{ form.amount.label(class="question-heading-with-hint") }}
+              <p class="hint">Enter the total value of the order you would like to place.</p>
+              {% if form.amount.errors %}
+                <p class="validation-message" id="error-po_number-textbox">
+                  {% for error in form.amount.errors %}{{ error }}{% endfor %}
+                </p>
+              {% endif %}
+              {{ form.amount(class="money", autocomplete="off") }}
+            </div>
+            {% if form.amount.errors %}
+              </div>
+            {% endif %}
+            {% if form.have_read_buyers_guide.errors %}
+              <div class="validation-wrapper">
+              {% endif %}
+              <div class="question" id="{{ form.have_read_buyers_guide.name }}">
+                {{ form.have_read_buyers_guide.label(class="question-heading-with-hint") }}
+                <p class="hint">Tick to confirm that you have ensured best value by following the steps outlined in our <a href="{{ url_for('.index') }}">buyer's guide</a></p>
+                {% if form.have_read_buyers_guide.errors %}
+                  <p class="validation-message" id="error-po_number-textbox">
+                    {% for error in form.have_read_buyers_guide.errors %}{{ error }}{% endfor %}
+                  </p>
+                {% endif %}
+                {{ form.have_read_buyers_guide() }}
+              </div>
+              {% if form.have_read_buyers_guide.errors %}
+                </div>
+              {% endif %}
+              <button type="submit" class="link-button">Submit Order</button>
+    </form>
+  </div>
+</div>
+
+<div class="grid-row service-attributes">
+  <div class="column-one-whole">
+    <a href="#content" class="return-to-top">Return to top ↑</a>
+  </div>
+</div>
+
+{% endblock %}
+
