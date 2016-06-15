@@ -100,7 +100,7 @@
                 {{ form.have_read_buyers_guide.label(class="question-heading-with-hint") }}
                 <p class="hint">Tick to confirm that you have ensured best value by following the steps outlined in our <a href="{{ url_for('.index') }}">buyer's guide</a></p>
                 {% if form.have_read_buyers_guide.errors %}
-                  <p class="validation-message" id="error-po_number-textbox">
+                  <p class="validation-message" id="error-have_read_buyers_guide-textbox">
                     {% for error in form.have_read_buyers_guide.errors %}{{ error }}{% endfor %}
                   </p>
                 {% endif %}
