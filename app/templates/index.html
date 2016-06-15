@@ -92,11 +92,11 @@
   </div>
     <div class="supplier-messages column-one-third">
       <aside role="complementary" aria-labelledby="supplier-message-heading">
-        
+
       {% if temporary_message or current_user.role == 'supplier' or dos_is_live %}
           <h2 id="supplier-message-heading">Sell services</h2>
       {% endif %}
-        
+
       {% if temporary_message %}
         {%
           with
@@ -108,7 +108,7 @@
           {% include "toolkit/{}.html".format(temporary_message.template_name) %}
         {% endwith %}
       {% endif %}
-        
+
       {% if dos_is_live %}
         <div class="padding-bottom-small">
           <p>
@@ -117,7 +117,7 @@
             </a>
           </p>
         </div>
-        
+
         {% if current_user.role != 'supplier' %}
         <div class="padding-bottom-small">
           <p>
@@ -125,12 +125,12 @@
               Create a supplier account
             </a>
           </p>
-          <p>Receive updates about opportunities to sell on the Digital Marketplace.</p>
+          <p>Receive updates about opportunities to sell on Inoket.</p>
         </div>
         {% endif %}
-        
+
       {% endif %}
-        
+
       {% if current_user.role == 'supplier' %}
         <div class="padding-bottom-small">
           <p>
@@ -140,7 +140,7 @@
           </p>
         </div>
       {% endif %}
-        
+
       </aside>
     </div>
 </div>

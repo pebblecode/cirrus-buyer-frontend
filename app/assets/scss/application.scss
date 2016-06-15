@@ -69,6 +69,7 @@ $path: "/static/images/";
 @import "_atoz_navigation.scss";
 @import "_error-pages.scss";
 
+
 .return-to-top {
   display: block;
   @include core-19;
@@ -89,7 +90,7 @@ $path: "/static/images/";
     padding-top: 7px;
     padding-bottom: 13px;
   }
-  
+
   .phase-banner {
     border-bottom: 0px;
 
@@ -97,7 +98,7 @@ $path: "/static/images/";
       margin-left: 3px;
     }
   }
-  
+
   .phase-banner p {
     margin: -6px 0 10px;
     color: white;

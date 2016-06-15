@@ -13,7 +13,7 @@ class TestErrors(BaseApplicationTest):
         assert_equal(404, res.status_code)
         assert_true(
             "Check you've entered the correct web "
-            "address or start again on the Digital Marketplace homepage."
+            "address or start again on Inoket homepage."
             in res.get_data(as_text=True))
         assert_true(
             "If you can't find what you're looking for, email "

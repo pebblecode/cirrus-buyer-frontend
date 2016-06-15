@@ -55,7 +55,7 @@
       @include media(tablet) {
         width: 7.6em;
         position: absolute;
-        top: -55px;
+        top: 0;
         right: -7.6em;
         margin-right: $gutter-half;
       }

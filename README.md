@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/alphagov/digitalmarketplace-buyer-frontend/badge.svg?branch=master&service=github)](https://coveralls.io/github/alphagov/digitalmarketplace-buyer-frontend?branch=master)
 [![Requirements Status](https://requires.io/github/alphagov/digitalmarketplace-buyer-frontend/requirements.svg?branch=master)](https://requires.io/github/alphagov/digitalmarketplace-buyer-frontend/requirements/?branch=master)
 
-Frontend buyer application for the digital marketplace.
+Frontend buyer application for Inoket.
 
 - Python app, based on the [Flask framework](http://flask.pocoo.org/)
 
@@ -16,12 +16,12 @@ sudo easy_install virtualenv
 ```
 
 The buyer frontend app requires access to both the API (for service pages) and
-to the search API (for search results). The location and access tokens for 
+to the search API (for search results). The location and access tokens for
 these services is set with environment variables.
 
 
-For development you can either point the environment variables to use the 
-preview environment's `API` and `Search API` boxes, or use local API instances if 
+For development you can either point the environment variables to use the
+preview environment's `API` and `Search API` boxes, or use local API instances if
 you have them running:
 
 ```
@@ -31,8 +31,8 @@ export DM_SEARCH_API_URL=http://localhost:5001
 export DM_SEARCH_API_AUTH_TOKEN=<auth_token_accepted_by_search_api>
 ```
 
-Where `DM_DATA_API_AUTH_TOKEN` is a token accepted by the Data API 
-instance pointed to by `DM_API_URL`, and `DM_SEARCH_API_AUTH_TOKEN` 
+Where `DM_DATA_API_AUTH_TOKEN` is a token accepted by the Data API
+instance pointed to by `DM_API_URL`, and `DM_SEARCH_API_AUTH_TOKEN`
 is a token accepted by the Search API instance pointed to by `DM_SEARCH_API_URL`.
 
 ### Create and activate the virtual environment
@@ -76,11 +76,11 @@ export DM_ELASTICSEARCH_URL=http://localhost:9200
 export DM_SEARCH_API_AUTH_TOKENS=myToken
 export DM_ENVIRONMENT=development
 export DM_LOG_PATH=$HOME/cirruslogs
-cd cirrus-buyer-frontend; 
-virtualenv ./venv; 
-source ./venv/bin/activate; 
-pip install -r requirements.txt; 
-yes | npm install; 
+cd cirrus-buyer-frontend;
+virtualenv ./venv;
+source ./venv/bin/activate;
+pip install -r requirements.txt;
+yes | npm install;
 ```
 
 Fishmongers should use this. It requires [https://github.com/adambrenecki/virtualfish](https://github.com/adambrenecki/virtualfish):
@@ -91,10 +91,10 @@ set -x DM_ELASTICSEARCH_URL http://localhost:9200
 set -x DM_SEARCH_API_AUTH_TOKENS myToken
 set -x DM_ENVIRONMENT development
 set -x DM_LOG_PATH $HOME/cirruslogs
-cd cirrus-buyer-frontend; 
-vf new buyervenv; 
+cd cirrus-buyer-frontend;
+vf new buyervenv;
 vf activate buyervenv;
-pip install -r requirements.txt; 
+pip install -r requirements.txt;
 yes | npm install;
 ```
 
@@ -122,7 +122,7 @@ npm test
 
 ### Run the development server
 
-To run the Buyer Frontend App for local development you can use the convenient run 
+To run the Buyer Frontend App for local development you can use the convenient run
 script, which sets the required environment variables to defaults if they have
 not already been set:
 
@@ -148,7 +148,7 @@ Front-end code (both development and production) is compiled using [Node](http:/
 
 ### Requirements
 
-You need Node (minimum version of 0.10.0, maximum version 0.12.x), which will also get you [NPM](npmjs.org), Node's package management tool. 
+You need Node (minimum version of 0.10.0, maximum version 0.12.x), which will also get you [NPM](npmjs.org), Node's package management tool.
 
 To check the version you're running, type:
 

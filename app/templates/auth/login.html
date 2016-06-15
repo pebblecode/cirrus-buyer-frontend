@@ -61,7 +61,7 @@
 {% endif %}
 
 {% with
-  heading = "Log in to the Digital Marketplace"
+  heading = "Log in to Inoket"
 %}
   {% include "toolkit/page-heading.html" %}
 {% endwith %}
@@ -78,7 +78,7 @@
                 <div class="question" id="{{ form.email_address.name }}">
                     {{ form.email_address.label(class="question-heading-with-hint") }}
                     <p class="hint">
-                        Enter the email address you used to register with the Digital Marketplace
+                        Enter the email address you used to register with Inoket
                     </p>
                     {% if form.email_address.errors %}
                     <p class="validation-message" id="error-email-address-textbox">
@@ -106,7 +106,7 @@
             {% if form.password.errors %}
                 </div>
             {% endif %}
-            
+
             {%
               with
               url = url_for('.request_password_reset'),
@@ -114,7 +114,7 @@
             %}
               {% include "toolkit/secondary-action-link.html" %}
             {% endwith %}
-            
+
             {%
               with
               type = "save",
@@ -131,7 +131,7 @@
             %}
               {% include "toolkit/secondary-action-link.html" %}
             {% endwith %}
-            
+
         </div>
     </div>
 </form>
