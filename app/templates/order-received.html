@@ -1,0 +1,55 @@
+{% extends "_base_page.html" %}
+
+{% block page_title %}Order Complete{% endblock %}
+
+{% block main_content %}
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <header class="page-heading-smaller">
+      <h1>Order Complete</h1>
+      <p class="context">We have emailed a copy of this order to <user email> for your records</p>
+    </header>
+  </div>
+</div>
+<div class="grid-row">
+  <div class="column-one-whole">
+    <h1>{{service_title}}</h1>
+    <p>{{supplier_name}}</p>
+    <table class="content-table">
+      <tbody>
+        <tr>
+          <td class="">Service ID:</td>
+          <td>{{service_id}}</td>
+        </tr>
+        <tr>
+          <td>
+            PO Number:
+          </td>
+          <td>{{po_number}}<td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>{{email}}</td>
+        </tr>
+        <tr>
+          <td>Date:</td>
+          <td>{{date}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="grid-row">
+  <div class="column-one-third">
+    <a class="link-button" href="javascript:window.print()" title="Print this page">Print</a>
+  </div>
+</div>
+{% endblock %}
+{% block footer_top %}
+  Something doesn’t seem, right? Contact the supplier or Inoket support at <a href="mailto:support@inoket.com">support@inoket.com</a>
+{% endblock %}
+
+
+
+
+
