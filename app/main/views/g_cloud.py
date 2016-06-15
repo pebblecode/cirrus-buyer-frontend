@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from flask import abort, render_template, request, current_app
+from flask import abort, render_template, request, current_app, redirect
 
 from dmutils.formats import get_label_for_lot_param, dateformat
 from dmapiclient import HTTPError
@@ -25,6 +25,8 @@ from ...helpers.search_helpers import (
 
 from ...exceptions import AuthException
 from app import search_api_client, data_api_client, content_loader
+
+from datetime import date
 
 
 @main.route('/inoket')
@@ -89,13 +91,38 @@ def get_service_by_id(service_id):
         abort(e.status_code)
 
 
+def format_date():
+    return date.today().strftime('%d/%m/%Y')
+
+
 @main.route('/order', methods=['GET', 'POST'])
 def order():
     service_id = request.args.get('service_id')
     service_title = request.args.get('service_title')
     supplierName = request.args.get('supplierName')
+    form = OrderForm()
+    if form.validate_on_submit():
+        return render_template(
+            'order-received.html',
+            service_id=service_id,
+            service_title=service_title,
+            supplier_name=supplierName,
+            po_number=form.po_number.data,
+            date=format_date(),
+            email=form.email_address.data
+            )
+
     return render_template(
-        'order.html', form=OrderForm(), service_id=service_id, service_title=service_title, supplierName=supplierName), 200
+        'order.html',
+        form=form,
+        service_id=service_id,
+        service_title=service_title,
+        supplierName=supplierName), 200
+
+
+@main.route('/order-received')
+def order_received():
+    return 'Thank You', 200
 
 
 @main.route('/inoket/search')
