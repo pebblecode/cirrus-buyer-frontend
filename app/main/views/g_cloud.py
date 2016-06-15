@@ -124,6 +124,12 @@ def order():
 def order_received():
     return 'Thank You', 200
 
+@main.route('/buyers-guide')
+def buyers_guide():
+    return render_template(
+        'buyer_catalogue.html',
+        title='Buyer Guide'
+    )
 
 @main.route('/inoket/search')
 def search():
