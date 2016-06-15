@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from flask import abort, render_template, request, current_app, redirect
+from flask import abort, render_template, request, current_app
 
 from dmutils.formats import get_label_for_lot_param, dateformat
 from dmapiclient import HTTPError
@@ -27,6 +27,7 @@ from ...exceptions import AuthException
 from app import search_api_client, data_api_client, content_loader
 
 from datetime import date
+import locale
 
 
 @main.route('/inoket')
@@ -109,7 +110,8 @@ def order():
             supplier_name=supplierName,
             po_number=form.po_number.data,
             date=format_date(),
-            email=form.email_address.data
+            email=form.email_address.data,
+            amount='{:,.2f}'.format(form.amount.data)
             )
 
     return render_template(

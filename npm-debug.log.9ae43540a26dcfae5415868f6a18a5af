@@ -1,0 +1,29 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'frontend-build:development' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.2
+4 verbose run-script [ 'prefrontend-build:development',
+4 verbose run-script   'frontend-build:development',
+4 verbose run-script   'postfrontend-build:development' ]
+5 info prefrontend-build:development digital-marketplace-frontend@0.0.1
+6 info frontend-build:development digital-marketplace-frontend@0.0.1
+7 verbose unsafe-perm in lifecycle true
+8 verbose stack Error: write EIO
+8 verbose stack     at Object.exports._errnoException (util.js:874:11)
+8 verbose stack     at exports._exceptionWithHostPort (util.js:897:20)
+8 verbose stack     at WriteWrap.afterWrite (net.js:763:14)
+9 verbose cwd /Users/aislingfoley/Sites/cirrus/cirrus-buyer-frontend
+10 error Darwin 15.5.0
+11 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run" "frontend-build:development"
+12 error node v4.2.2
+13 error npm  v2.14.7
+14 error code EIO
+15 error errno EIO
+16 error syscall write
+17 error write EIO
+18 error If you need help, you may report this error at:
+18 error     <https://github.com/npm/npm/issues>
+19 verbose exit [ 1, true ]
