@@ -88,7 +88,7 @@
                   {% for error in form.amount.errors %}{{ error }}{% endfor %}
                 </p>
               {% endif %}
-              {{ form.amount(class="money", autocomplete="off") }}
+              {{ form.amount(class="text-box", type="number", min="0.0", step="0.01") }}
             </div>
             {% if form.amount.errors %}
               </div>
