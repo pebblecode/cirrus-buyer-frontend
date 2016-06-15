@@ -6,9 +6,10 @@
   "engine": "node >= 4.2",
   "dependencies": {
     "bower": "1.5.2",
-    "cirrus-base-template": "pebblecode/cirrus-base-template",
-    "cirrus-frameworks": "pebblecode/cirrus-frameworks",
-    "cirrus-frontend-toolkit": "pebblecode/cirrus-frontend-toolkit",
+    "govuk_frontend_toolkit": "4.1.1",
+    "cirrus-base-template": "git://github.com/pebblecode/cirrus-base-template",
+    "cirrus-frameworks": "git://github.com/pebblecode/cirrus-frameworks",
+    "cirrus-frontend-toolkit": "git://github.com/pebblecode/cirrus-frontend-toolkit",
     "del": "1.1.1",
     "govuk_frontend_toolkit": "4.1.1",
     "gulp": "3.8.7",
