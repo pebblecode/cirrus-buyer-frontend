@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from flask import abort, render_template, request, redirect, current_app
+from flask import abort, render_template, request, current_app
 
 from dmutils.formats import get_label_for_lot_param, dateformat
 from dmapiclient import HTTPError
 from dmutils.formats import LOTS
 
 from ...main import main
+from ..forms.order_forms import OrderForm
 from ...presenters.search_presenters import (
     filters_for_lot,
     set_filter_states,
@@ -25,10 +26,14 @@ from ...helpers.search_helpers import (
 from ...exceptions import AuthException
 from app import search_api_client, data_api_client, content_loader
 
+from datetime import date
+import locale
+
 
 @main.route('/inoket')
 def index_g_cloud():
     return render_template('index-g-cloud.html')
+
 
 @main.route('/inoket/services/<service_id>')
 def get_service_by_id(service_id):
@@ -77,13 +82,44 @@ def get_service_by_id(service_id):
             service=service_view_data,
             service_unavailability_information=service_unavailability_information,
             lot=service_view_data.lot.lower(),
-            lot_label=get_label_for_lot_param(service_view_data.lot.lower())), status_code
+            lot_label=get_label_for_lot_param(service_view_data.lot.lower()),
+            service_id=service_id), status_code
     except AuthException:
         abort(500, "Application error")
     except KeyError:
         abort(404, "Service ID '%s' can not be found" % service_id)
     except HTTPError as e:
         abort(e.status_code)
+
+
+def format_date():
+    return date.today().strftime('%d/%m/%Y')
+
+
+@main.route('/order', methods=['GET', 'POST'])
+def order():
+    service_id = request.args.get('service_id')
+    service_title = request.args.get('service_title')
+    supplierName = request.args.get('supplierName')
+    form = OrderForm()
+    if form.validate_on_submit():
+        return render_template(
+            'order-received.html',
+            service_id=service_id,
+            service_title=service_title,
+            supplier_name=supplierName,
+            po_number=form.po_number.data,
+            date=format_date(),
+            email=form.email_address.data,
+            amount='{:,.2f}'.format(form.amount.data)
+            )
+
+    return render_template(
+        'order.html',
+        form=form,
+        service_id=service_id,
+        service_title=service_title,
+        supplierName=supplierName), 200
 
 
 @main.route('/inoket/search')
@@ -94,9 +130,9 @@ def search():
         content_builder
     )
 
-
     response = search_api_client.search_services(
-        index='inoket-1', **build_search_query(request, filters, content_builder)
+        index='inoket-1',
+        **build_search_query(request, filters, content_builder)
     )
 
     search_results_obj = SearchResults(response)
