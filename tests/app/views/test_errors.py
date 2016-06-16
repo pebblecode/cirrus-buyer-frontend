@@ -17,10 +17,10 @@ class TestErrors(BaseApplicationTest):
             in res.get_data(as_text=True))
         assert_true(
             "If you can't find what you're looking for, email "
-            "<a href=\"mailto:enquiries@digitalmarketplace.service.gov.uk?"
+            "<a href=\"mailto:enquiries@inoket.com?"
             "subject=Digital%20Marketplace%20feedback\" title=\"Please "
-            "send feedback to enquiries@digitalmarketplace.service.gov.uk\">"
-            "enquiries@digitalmarketplace.service.gov.uk</a>"
+            "send feedback to enquiries@inoket.com\">"
+            "enquiries@inoket.com</a>"
             in res.get_data(as_text=True))
 
     def test_500(self, search_api_mock):
