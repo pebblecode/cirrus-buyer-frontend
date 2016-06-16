@@ -133,7 +133,7 @@ def buyers_guide():
         title='Buyer Guide'
     )
 
-@main.route('/suppliers-guide')
+@main.route('/supply-guide')
 def suppliers_guide():
     return render_template(
         'supplier_guide.html',
