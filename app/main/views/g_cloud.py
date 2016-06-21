@@ -129,8 +129,15 @@ def order_received():
 @main.route('/buyers-guide')
 def buyers_guide():
     return render_template(
-        'buyer_catalogue.html',
+        'buyer_guide.html',
         title='Buyer Guide'
+    )
+
+@main.route('/supply-guide')
+def suppliers_guide():
+    return render_template(
+        'supplier_guide.html',
+        title='Supplier Guide'
     )
 
 @main.route('/inoket/search')
