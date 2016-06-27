@@ -6,7 +6,6 @@
   "engine": "node >= 4.2",
   "dependencies": {
     "bower": "1.5.2",
-    "govuk_frontend_toolkit": "4.1.1",
     "cirrus-base-template": "git://github.com/pebblecode/cirrus-base-template",
     "cirrus-frameworks": "git://github.com/pebblecode/cirrus-frameworks",
     "cirrus-frontend-toolkit": "git://github.com/pebblecode/cirrus-frontend-toolkit",
