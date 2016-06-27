@@ -170,7 +170,29 @@ def search():
     set_filter_states(filters, request)
     current_lot = get_lot_from_request(request)
 
-    # import ipdb; ipdb.set_trace();
+    services_to_return = search_results_obj.search_results
+
+    if request.args.get('by_distance'):
+
+        # FIXME
+        # Here we're using the data_api_client to avoid forking the dmapiclient library. 
+        # This will have to change for production, as the auth tokens may not be the same.
+        response = data_api_client._post("{}/order-by-distance".format(current_app.config['DM_GEO_API_URL']), { 
+            'from_location': 'NW1 1PA', 
+            'services': [s['id'] for s in search_results_obj.search_results]
+        })
+
+        locations = response['locations']
+
+        for l in locations:
+            matching_services = [x for x in search_results_obj.search_results if x['id'] == l['service_id']]
+            if len(matching_services) > 0:
+                l.update(matching_services[0])
+            else:
+                del l
+
+        services_to_return = locations
+
     return render_template(
         'search.html',
         current_lot=current_lot,
@@ -180,7 +202,7 @@ def search():
         pagination=pagination_config,
         search_keywords=get_keywords_from_request(request),
         search_query=query_args_for_pagination(request.args),
-        services=search_results_obj.search_results,
+        services=services_to_return,
         summary=search_summary.markup(),
         title='Search results',
         total=search_results_obj.total

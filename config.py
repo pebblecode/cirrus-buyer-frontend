@@ -34,6 +34,8 @@ class Config(object):
     DM_DATA_API_AUTH_TOKEN = None
     DM_SEARCH_API_URL = None
     DM_SEARCH_API_AUTH_TOKEN = None
+    DM_GEO_API_URL = None
+    DM_GEO_API_AUTH_TOKEN = None
 
     # matches api(s)
     DM_SEARCH_PAGE_SIZE = 100
@@ -88,6 +90,8 @@ class Test(Config):
     DM_DATA_API_AUTH_TOKEN = "myToken"
     DM_SEARCH_API_URL = "http://localhost:5001"
     DM_SEARCH_API_AUTH_TOKEN = "myToken"
+    DM_GEO_API_URL = "http://localhost:5005"
+    DM_GEO_API_AUTH_TOKEN = "myToken"
 
     SHARED_EMAIL_KEY = "KEY"
     SECRET_KEY = "KEY"
@@ -103,6 +107,9 @@ class Development(Config):
 
     DM_SEARCH_API_URL = os.getenv('DM_SEARCH_API_URL', "http://localhost:5001")
     DM_SEARCH_API_AUTH_TOKEN = os.getenv('DM_SEARCH_API_AUTH_TOKEN',"myToken")
+
+    DM_GEO_API_URL = os.getenv('DM_GEO_API_URL', "http://localhost:5005")
+    DM_GEO_API_AUTH_TOKEN = os.getenv('DM_GEO_API_AUTH_TOKEN', "myToken")
 
     SECRET_KEY = "verySecretKey"
     SHARED_EMAIL_KEY = "very_secret"
