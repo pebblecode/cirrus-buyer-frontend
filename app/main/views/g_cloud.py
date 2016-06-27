@@ -187,6 +187,7 @@ def search():
         for l in locations:
             matching_services = [x for x in search_results_obj.search_results if x['id'] == l['service_id']]
             if len(matching_services) > 0:
+                l['distance'] = round(l['distance'], 2)
                 l.update(matching_services[0])
             else:
                 del l
