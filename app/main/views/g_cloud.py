@@ -172,13 +172,14 @@ def search():
 
     services_to_return = search_results_obj.search_results
 
-    if request.args.get('by_distance'):
+    postcode = request.args.get('by_distance')
+
+    if postcode:
 
         # FIXME
-        # Here we're using the data_api_client to avoid forking the dmapiclient library. 
-        # This will have to change for production, as the auth tokens may not be the same.
+        # Here we're using the data_api_client to avoid forking the dmapiclient library and creating a new one just for local search. 
         response = data_api_client._post("{}/order-by-distance".format(current_app.config['DM_GEO_API_URL']), { 
-            'from_location': 'NW1 1PA', 
+            'from_location': postcode, 
             'services': [s['id'] for s in search_results_obj.search_results]
         })
 
