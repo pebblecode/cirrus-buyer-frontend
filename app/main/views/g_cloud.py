@@ -24,7 +24,7 @@ from ...helpers.search_helpers import (
 )
 
 from ...exceptions import AuthException
-from app import search_api_client, data_api_client, content_loader
+from app import search_api_client, data_api_client, order_api_client, content_loader
 
 from datetime import date
 import locale
@@ -106,7 +106,12 @@ def order():
         po_number = form.po_number.data
         email = form.email_address.data
         amount = form.amount.data
-        response = data_api_client.post_order(service_id, po_number, email, amount)
+        response = order_api_client.create_order(order={
+            "service_id": service_id,
+            "po_number": po_number,
+            "email": email,
+            "amount_in_pennies": int(amount * 100)
+            })
 
         return render_template(
             'order-received.html',
