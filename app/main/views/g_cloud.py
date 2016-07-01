@@ -124,7 +124,7 @@ def order():
         form=form,
         service_id=service_id,
         service_title=service_title,
-        supplierName=supplierName), 200
+        supplierName=supplier_name), 200
 
 
 @main.route('/order-received')
