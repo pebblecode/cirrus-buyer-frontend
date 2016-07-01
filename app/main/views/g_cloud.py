@@ -100,18 +100,23 @@ def format_date():
 def order():
     service_id = request.args.get('service_id')
     service_title = request.args.get('service_title')
-    supplierName = request.args.get('supplierName')
+    supplier_name = request.args.get('supplierName')
     form = OrderForm()
     if form.validate_on_submit():
+        po_number = form.po_number.data
+        email = form.email_address.data
+        amount = form.amount.data
+        response = data_api_client.post_order(service_id, po_number, email, amount)
+
         return render_template(
             'order-received.html',
             service_id=service_id,
             service_title=service_title,
-            supplier_name=supplierName,
-            po_number=form.po_number.data,
+            supplier_name=supplier_name,
+            po_number=po_number,
             date=format_date(),
-            email=form.email_address.data,
-            amount='{:,.2f}'.format(form.amount.data)
+            email=email,
+            amount='{:,.2f}'.format(amount)
             )
 
     return render_template(
